@@ -3,19 +3,34 @@ import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Sparkles, Loader2, X } from "lucide-react"; // Added new icons
+import { 
+  ExternalLink, 
+  Github, 
+  Sparkles, 
+  Loader2, 
+  X, 
+  GalleryHorizontal, // Added for gallery button
+  ChevronLeft,       // Added for gallery nav
+  ChevronRight       // Added for gallery nav
+} from "lucide-react";
 
 const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "Tryme E-Commerce Platform",
       description: "Full-stack e-commerce solution with payment integration, admin dashboard, and real-time inventory management.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
+      images: [ // Changed from 'image' to 'images'
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273039/Screenshot_2025-11-04_at_9.43.33_PM_q4on4a.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273147/Screenshot_2025-11-04_at_9.43.42_PM_tswr3b.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273171/Screenshot_2025-11-04_at_9.43.49_PM_iqfjqk.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273197/Screenshot_2025-11-04_at_9.44.00_PM_gnrnzt.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273239/Screenshot_2025-11-04_at_9.44.47_PM_i3twvl.png"
+      ],
       technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind"],
       type: "Full Stack",
       status: "Deployed",
-      liveUrl: "#",
+      liveUrl: "https://spoofy-frontend.vercel.app/",
       githubUrl: "#",
       features: ["Payment Processing", "Admin Dashboard", "Real-time Updates"]
     },
@@ -23,7 +38,11 @@ const Portfolio = () => {
       id: 2,
       title: "Task Management App",
       description: "Collaborative project management tool with team features, time tracking, and progress analytics.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80"
+      ],
       technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
       type: "Web App",
       status: "In Development",
@@ -31,15 +50,17 @@ const Portfolio = () => {
       githubUrl: "#",
       features: ["Team Collaboration", "Time Tracking", "Analytics Dashboard"]
     },
-    // ... (other projects remain the same) ...
     {
       id: 3,
       title: "Restaurant Website",
       description: "Modern restaurant website with online reservations, menu management, and customer reviews system.",
-      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
+      ],
       technologies: ["React", "Express", "Material-UI", "Node.js"],
       type: "Client Project",
-      status: "Deployed",
+      status: "Pending",
       liveUrl: "#",
       githubUrl: "#",
       features: ["Online Reservations", "Menu Management", "Review System"]
@@ -48,10 +69,13 @@ const Portfolio = () => {
       id: 4,
       title: "Portfolio CMS",
       description: "Content management system for creative professionals with image optimization and SEO features.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=800&q=80"
+      ],
       technologies: ["Next.js", "Sanity", "Tailwind", "Vercel"],
       type: "CMS",
-      status: "Deployed",
+      status: "In Development",
       liveUrl: "#",
       githubUrl: "#",
       features: ["Image Optimization", "SEO Ready", "Easy Content Updates"]
@@ -60,10 +84,14 @@ const Portfolio = () => {
       id: 5,
       title: "Learning Management System",
       description: "Educational platform with course creation, student tracking, and interactive learning modules.",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+      ],
       technologies: ["React", "MongoDB", "Express", "Socket.io"],
       type: "Education",
-      status: "Modified",
+      status: "In Development",
       liveUrl: "#",
       githubUrl: "#",
       features: ["Course Creation", "Progress Tracking", "Interactive Modules"]
@@ -72,21 +100,28 @@ const Portfolio = () => {
       id: 6,
       title: "Real Estate Platform",
       description: "Property listing website with advanced search, virtual tours, and agent management system.",
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80"
+      ], // Single image example
       technologies: ["Next.js", "TypeScript", "Prisma", "Tailwind"],
       type: "Enterprise",
-      status: "Deployed",
+      status: "In Development",
       liveUrl: "#",
       githubUrl: "#",
       features: ["Advanced Search", "Virtual Tours", "Agent Portal"]
     }
   ];
 
-  // --- NEW: State for AI Modal ---
+  // --- State for AI Modal ---
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [learningPath, setLearningPath] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // --- NEW: State for Gallery Modal ---
+  const [galleryProject, setGalleryProject] = useState<any>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -112,14 +147,14 @@ const Portfolio = () => {
     }
   };
 
-  // --- NEW: Function to handle modal open and API call ---
+  // --- Function to handle AI modal open and API call ---
   const handleShowLearningPath = async (project: any) => {
     setSelectedProject(project);
     setIsLoading(true);
     setError("");
     setLearningPath("");
 
-    const apiKey = "AIzaSyB1tGB7vWJcfU1_GcqMyQBq6SDcaAJ94P0"; // Leave this empty string
+    const apiKey = ""; // API key is handled by the environment
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
 
     const systemPrompt = "You are an expert senior developer and mentor. Your goal is to provide a high-level, step-by-step learning path for a junior developer who wants to build a specific project. Focus on the key concepts and technologies.";
@@ -180,7 +215,7 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
     }
   };
 
-  // --- NEW: Function to close the modal ---
+  // --- Function to close the AI modal ---
   const handleCloseModal = () => {
     setSelectedProject(null);
     setLearningPath("");
@@ -188,8 +223,33 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
     setError("");
   };
 
-  // --- NEW: Project Card Component with Spotlight ---
-  const ProjectCard = ({ project, onShowLearningPath }: { project: any, onShowLearningPath: (project: any) => void }) => {
+  // --- NEW: Gallery Modal Functions ---
+  const handleShowGallery = (project: any) => {
+    setGalleryProject(project);
+    setActiveImageIndex(0);
+  };
+
+  const handleCloseGallery = () => {
+    setGalleryProject(null);
+  };
+
+  const handleNextImage = () => {
+    if (!galleryProject) return;
+    setActiveImageIndex((prev) => (prev + 1) % galleryProject.images.length);
+  };
+
+  const handlePrevImage = () => {
+    if (!galleryProject) return;
+    setActiveImageIndex((prev) => (prev - 1 + galleryProject.images.length) % galleryProject.images.length);
+  };
+
+  const handleThumbClick = (index: number) => {
+    setActiveImageIndex(index);
+  };
+
+
+  // --- Project Card Component with Spotlight ---
+  const ProjectCard = ({ project, onShowLearningPath, onShowGallery }: { project: any, onShowLearningPath: (project: any) => void, onShowGallery: (project: any) => void }) => {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
@@ -225,17 +285,28 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
 
         <div className="flex flex-col h-full">
           <div className="relative overflow-hidden">
-            {/* --- Image is now a link --- */}
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} live demo`}>
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            </a>
+            {/* --- Image is NO LONGER a link --- */}
+            <img
+              src={project.images[0]} // Use first image
+              alt={project.title}
+              className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+              onError={(e) => (e.currentTarget.src = 'https://placehold.co/800x600/0c1016/3b82f6?text=Image+Not+Found')}
+            />
             <Badge className={`absolute top-4 right-4 ${getStatusColor(project.status)}`}>
               {project.status}
             </Badge>
+            {/* --- NEW: Gallery Button --- */}
+            {project.images && project.images.length > 1 && (
+              <Button
+                size="icon"
+                variant="secondary"
+                className="absolute top-4 left-4 h-8 w-8 bg-black/50 text-white hover:bg-black/75 backdrop-blur-sm"
+                onClick={() => onShowGallery(project)}
+                aria-label="View project gallery"
+              >
+                <GalleryHorizontal className="h-4 w-4" />
+              </Button>
+            )}
           </div>
 
           <div className="p-6 flex flex-col flex-grow">
@@ -271,19 +342,29 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
             {/* --- Consistent CTA buttons at the bottom --- */}
             <div className="mt-auto pt-4">
               <div className="flex space-x-2">
-                <Button size="sm" className="flex-1 group/button shadow-lg shadow-wolf-blue/20 bg-gradient-to-r from-wolf-blue to-wolf-purple hover:shadow-xl hover:shadow-wolf-blue/30" asChild>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                
+                {/* --- MODIFIED: Conditional Live Site Button --- */}
+                {project.status === "Deployed" ? (
+                  <Button size="sm" className="flex-1 group/button shadow-lg shadow-wolf-blue/20 bg-gradient-to-r from-wolf-blue to-wolf-purple hover:shadow-xl hover:shadow-wolf-blue/30" asChild>
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Live Site
+                    </a>
+                  </Button>
+                ) : (
+                  <Button size="sm" className="flex-1" disabled>
                     <ExternalLink className="h-4 w-4 mr-2" />
                     Live Site
-                  </a>
-                </Button>
+                  </Button>
+                )}
+
                 <Button size="sm" variant="outline" className="group/button" asChild>
                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                     <Github className="h-4 w-4" />
                   </a>
                 </Button>
               </div>
-              {/* --- NEW: AI Feature Button --- */}
+              {/* --- AI Feature Button --- */}
               <Button 
                 size="sm" 
                 variant="outline" 
@@ -343,7 +424,12 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} onShowLearningPath={handleShowLearningPath} />
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              onShowLearningPath={handleShowLearningPath}
+              onShowGallery={handleShowGallery} // Pass new prop
+            />
           ))}
         </motion.div>
 
@@ -359,7 +445,7 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
         </motion.div>
       </div>
 
-      {/* --- NEW: AI Learning Path Modal --- */}
+      {/* --- AI Learning Path Modal --- */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -422,6 +508,107 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
           </motion.div>
         )}
       </AnimatePresence>
+
+
+      {/* --- NEW: Gallery Modal --- */}
+      <AnimatePresence>
+        {galleryProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ backdropFilter: "blur(8px)" }}
+            onClick={handleCloseGallery} // Close on backdrop click
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="relative w-full max-w-4xl p-4 sm:p-6 rounded-xl border border-wolf-purple/20 shadow-2xl overflow-hidden"
+              style={{ 
+                background: "linear-gradient(to bottom right, rgba(12, 16, 22, 0.95), rgba(59, 130, 246, 0.1))",
+              }}
+              onClick={(e) => e.stopPropagation()} // Prevent closing modal on inner click
+            >
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute top-4 right-4 z-20 text-muted-foreground hover:text-foreground"
+                onClick={handleCloseGallery}
+                aria-label="Close gallery"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+              
+              <h3 className="text-xl font-sans font-semibold text-foreground mb-4">
+                {galleryProject.title}
+              </h3>
+
+              {/* Main Image Viewer */}
+              <div className="relative mb-4">
+                <AnimatePresence mode="wait">
+                  <motion.img 
+                    key={activeImageIndex}
+                    src={galleryProject.images[activeImageIndex]}
+                    alt={`Project image ${activeImageIndex + 1}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full h-auto max-h-[60vh] object-contain rounded-lg"
+                    onError={(e) => (e.currentTarget.src = 'https://placehold.co/800x600/0c1016/3b82f6?text=Image+Not+Found')}
+                  />
+                </AnimatePresence>
+
+                {/* Prev Button */}
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/75"
+                  onClick={handlePrevImage}
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </Button>
+                {/* Next Button */}
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white hover:bg-black/75"
+                  onClick={handleNextImage}
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </Button>
+              </div>
+
+              {/* Thumbnail Strip */}
+              <div className="flex justify-center gap-2 overflow-x-auto p-2">
+                {galleryProject.images.map((img, index) => (
+                  <button 
+                    key={index} 
+                    onClick={() => handleThumbClick(index)}
+                    className={`w-16 h-12 rounded-md overflow-hidden flex-shrink-0 transition-all duration-200
+                      ${index === activeImageIndex ? 'ring-2 ring-wolf-blue ring-offset-2 ring-offset-background/95' : 'opacity-60 hover:opacity-100'}
+                    `}
+                    aria-label={`View image ${index + 1}`}
+                  >
+                    <img 
+                      src={img} 
+                      alt={`Thumbnail ${index + 1}`} 
+                      className="w-full h-full object-cover" 
+                      onError={(e) => (e.currentTarget.src = 'https://placehold.co/100x100/0c1016/3b82f6?text=Error')}
+                    />
+                  </button>
+                ))}
+              </div>
+
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 };
