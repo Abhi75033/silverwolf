@@ -11,8 +11,10 @@ import {
   X, 
   GalleryHorizontal, // Added for gallery button
   ChevronLeft,       // Added for gallery nav
-  ChevronRight       // Added for gallery nav
+  ChevronRight,      // Added for gallery nav
+  Rocket             // Added for new CTA card
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Portfolio = () => {
   const projects = [
@@ -25,7 +27,8 @@ const Portfolio = () => {
         "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273147/Screenshot_2025-11-04_at_9.43.42_PM_tswr3b.png",
         "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273171/Screenshot_2025-11-04_at_9.43.49_PM_iqfjqk.png",
         "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273197/Screenshot_2025-11-04_at_9.44.00_PM_gnrnzt.png",
-        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762273239/Screenshot_2025-11-04_at_9.44.47_PM_i3twvl.png"
+      
+
       ],
       technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind"],
       type: "Full Stack",
@@ -39,9 +42,32 @@ const Portfolio = () => {
       title: "Task Management App",
       description: "Collaborative project management tool with team features, time tracking, and progress analytics.",
       images: [
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80"
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277173/Screenshot_2025-11-04_at_10.50.05_PM_dg3t4v.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277217/Screenshot_2025-11-04_at_10.50.09_PM_mmatoi.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277283/Screenshot_2025-11-04_at_10.50.14_PM_ffts7c.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277310/Screenshot_2025-11-04_at_10.50.19_PM_nhoe5w.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277351/Screenshot_2025-11-04_at_10.50.23_PM_c8whu5.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277866/Screenshot_2025-11-04_at_11.07.13_PM_aacq1o.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277397/Screenshot_2025-11-04_at_10.50.30_PM_pxqdeh.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277650/Screenshot_2025-11-04_at_10.50.43_PM_wirrm8.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762277720/Screenshot_2025-11-04_at_10.50.53_PM_fijyar.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278131/Screenshot_2025-11-04_at_11.11.22_PM_vertt4.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278181/Screenshot_2025-11-04_at_11.10.56_PM_bidyts.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278238/Screenshot_2025-11-04_at_11.10.37_PM_dcdwbt.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278264/Screenshot_2025-11-04_at_11.10.44_PM_apitsh.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278301/Screenshot_2025-11-04_at_11.10.24_PM_z4wu9m.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278348/Screenshot_2025-11-04_at_11.10.17_PM_x7a3ng.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278392/Screenshot_2025-11-04_at_11.10.07_PM_z8myam.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278437/Screenshot_2025-11-04_at_11.10.04_PM_y9exxa.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278480/Screenshot_2025-11-04_at_11.09.57_PM_rrobdz.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278524/Screenshot_2025-11-04_at_11.09.50_PM_pu6f4g.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278573/Screenshot_2025-11-04_at_11.09.47_PM_wgvzwy.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278605/Screenshot_2025-11-04_at_11.09.44_PM_d0ctb0.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278646/Screenshot_2025-11-04_at_11.09.38_PM_aoifl6.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278693/Screenshot_2025-11-04_at_11.09.14_PM_czoxcr.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278736/Screenshot_2025-11-04_at_11.09.22_PM_x4lusg.png",
+        "https://res.cloudinary.com/abhisek-aur-backend/image/upload/v1762278776/Screenshot_2025-11-04_at_11.09.36_PM_dlb1lw.png"
+        
       ],
       technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
       type: "Web App",
@@ -117,6 +143,7 @@ const Portfolio = () => {
   const [learningPath, setLearningPath] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   // --- NEW: State for Gallery Modal ---
   const [galleryProject, setGalleryProject] = useState<any>(null);
@@ -142,7 +169,9 @@ const Portfolio = () => {
     switch (status) {
       case "Deployed": return "bg-wolf-green text-black";
       case "In Development": return "bg-wolf-blue text-white";
-      case "Modified": return "bg-wolf-purple text-white";
+      case "Modified":
+      case "Pending": // Added "Pending" status here
+        return "bg-wolf-purple text-white";
       default: return "bg-muted text-muted-foreground";
     }
   };
@@ -384,6 +413,41 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
   // --- END: Project Card Component ---
 
 
+  // --- NEW: CTA Card Component ---
+  const CtaCard = () => {
+    return (
+      <motion.div
+        variants={itemVariants}
+        className="group relative h-full rounded-xl p-8 flex flex-col items-center justify-center text-center overflow-hidden border-2 border-dashed border-wolf-blue/30 transition-all duration-300 hover:border-wolf-blue hover:bg-wolf-blue/5"
+      >
+        <div className="absolute inset-0 -z-10 w-full h-full bg-gradient-to-b from-transparent via-wolf-blue/5 to-transparent" />
+        
+        <motion.div
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1, type: "spring", stiffness: 260, damping: 20 }}
+        >
+          <Rocket className="h-12 w-12 text-wolf-purple mb-6" />
+        </motion.div>
+        
+        <h3 className="text-2xl font-sans font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-wolf-blue to-wolf-purple">
+          Turn Your Idea Into Reality
+        </h3>
+        
+        <p className="text-muted-foreground mb-8">
+         Build. Create. Launch — your vision starts here.
+        </p>
+        
+        <Button onClick={()=>navigate('/contact')} size="lg" className="shadow-lg shadow-wolf-blue/20 bg-gradient-to-r from-wolf-blue to-wolf-purple hover:shadow-xl hover:shadow-wolf-blue/30">
+          Let's Talk
+        </Button>
+      </motion.div>
+    );
+  };
+  // --- END: CTA Card Component ---
+
+
   return (
     <section className="py-20 bg-background/95 relative overflow-hidden">
       {/* --- Animated Aurora Background --- */}
@@ -431,6 +495,8 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
               onShowGallery={handleShowGallery} // Pass new prop
             />
           ))}
+          {/* --- NEW: Added CTA Card to the grid --- */}
+          <CtaCard />
         </motion.div>
 
         <motion.div
@@ -614,4 +680,5 @@ Please provide a concise, step-by-step learning path (5-7 steps) for a junior de
 };
 
 export default Portfolio;
+
 
