@@ -425,7 +425,7 @@ const Hero = () => {
     setIsModalOpen(true);
     setModalContent(""); // Clear previous content
 
-    const apiKey = "AIzaSyB1tGB7vWJcfU1_GcqMyQBq6SDcaAJ94P0"; // API key is handled by the environment
+    const apiKey = "AIzaSyBC-j_Up8rMH2RBIpPgnUiHeRTq05AhWiY"; // API key is handled by the environment
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
 
     const payload = {
